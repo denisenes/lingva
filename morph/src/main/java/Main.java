@@ -1,5 +1,6 @@
 import javax.xml.stream.XMLStreamException;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class Main {
@@ -31,7 +32,14 @@ public class Main {
         }
 
         morph.processCorpora(tokens);
-        morph.printRecords();
+        String result = morph.printRecords();
+
+        File outputFile = new File("src/main/resources/output.txt");
+        try (FileOutputStream outputStream = new FileOutputStream(outputFile)) {
+            outputStream.write(result.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

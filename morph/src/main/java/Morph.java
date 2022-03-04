@@ -79,11 +79,14 @@ public class Morph {
         }
     }
 
-    public void printRecords() {
+    public String printRecords() {
+        StringBuilder sb = new StringBuilder();
         ArrayList<Record> records_arr = new ArrayList<>(records.values());
         records_arr.sort(Comparator.comparing(r -> r.freq));
         for (var i : records_arr) {
             System.out.println(i.lemma.word + " " + i.freq + " " + i.part);
+            sb.append(i.lemma.word).append(" ").append(i.freq).append(" ").append(i.part).append("\n");
         }
+        return sb.toString();
     }
 }
