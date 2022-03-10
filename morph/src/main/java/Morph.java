@@ -31,6 +31,12 @@ public class Morph {
     public ArrayList<Record> processCorpora(ArrayList<String> tokens) {
         System.out.println("=== Result ===");
         int aboba = 0;
+        int notFound = 0;
+
+        double error = 0;
+        double n = 0;
+
+
         for (var t : tokens) {
             ArrayList<Form> fs = forms.get(t);
 
@@ -42,24 +48,35 @@ public class Morph {
                 }
 
                 if (lls.size() == 1) {
-                    Lemma l = ((Lemma) lls.toArray()[0]);
-                    aboba++;
-                    if (records.containsKey(l)) {
-                        Record record = records.get(l);
-                        record.freq += 1;
-                    } else {
-                        Record record = new Record();
-                        record.lemma = l;
-                        record.part = l.grammemes.get(0); // part of speech is always in 0 index of grammemes
-                        record.freq = 1;
-                        records.put(l, record);
-                    }
-                } else {
-                    //TODO omonims resolving
                     assert true;
+                } else {
+                    // compute error
+                    double size = lls.size();
+                    error += (size-1)/size;
                 }
+                Lemma l = ((Lemma) lls.toArray()[0]);
+                aboba++;
+                if (records.containsKey(l)) {
+                    Record record = records.get(l);
+                    record.freq += 1;
+                } else {
+                    Record record = new Record();
+                    record.lemma = l;
+                    record.part = l.grammemes.get(0); // part of speech is always in 0 index of grammemes
+                    record.freq = 1;
+                    records.put(l, record);
+                }
+                n++;
+            }
+            else {
+                notFound++;
+                aboba++;
+
             }
         }
+        error = error / n;
+        System.out.println("// Нераспознано слов (%): " + (notFound * 100 / (n + notFound)));
+        System.out.println("// Средняя точность определения леммы слова: " + ((1 - error)*100));
         System.out.println("// Общее количество рассмотренных слов: " + aboba);
         return new ArrayList<>(records.values());
     }
