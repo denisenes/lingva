@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -15,8 +16,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        String phrase = "то, что";
-        Integer neighbours_size = 3;
+        String phrase = "поднял руку";
+        Integer neighbours_size = 4;
         // Integer freq_max = 100;
 
         ArrayList<Lemma> lemmas = new ArrayList<>();
@@ -76,11 +77,11 @@ public class Main {
                     if (!wrongPunct) {
                         wrongPunct = punctCheck(annTokens.get(i - sh).token);
                     }
-                    context.add(annTokens.get(i - sh).token);
+                    context.add(annTokens.get(i - sh).lemmas.stream().limit(1).collect(Collectors.joining()));
                 }
                 // middle shtuki
                 for (int sh = 0; sh < window.size(); sh++) {
-                    context.add(annTokens.get(i + sh).token);
+                    context.add(annTokens.get(i + sh).lemmas.stream().limit(1).collect(Collectors.joining()));
                 }
                 if (wrongPunct) {
                     break;
@@ -96,14 +97,14 @@ public class Main {
                 boolean wrongPunct = false;
                 // middle shtuki
                 for (int sh = 0; sh < window.size(); sh++) {
-                    context.add(annTokens.get(i + sh).token);
+                    context.add(annTokens.get(i + sh).lemmas.stream().limit(1).collect(Collectors.joining()));
                 }
                 // right shtuki
                 for (int sh = 0; sh < right_shift; sh++) {
                     if (!wrongPunct) {
                         wrongPunct = punctCheck(annTokens.get(i + window.size() + sh).token);
                     }
-                    context.add(annTokens.get(i + window.size() + sh).token);
+                    context.add(annTokens.get(i + window.size() + sh).lemmas.stream().limit(1).collect(Collectors.joining()));
                 }
                 if (wrongPunct) {
                     break;
