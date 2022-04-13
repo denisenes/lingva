@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        String phrase = "поднял руку";
+        String phrase = "царя Давида";
         Integer neighbours_size = 4;
         // Integer freq_max = 100;
 
