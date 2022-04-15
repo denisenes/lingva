@@ -50,8 +50,9 @@ public class Main {
          * Here we go...
          */
 
-        // ngram len
-        int n = 5;
+        // PARAMETERS
+        int n = 10;
+        double P = 0.5;
 
         // hashmap: Token
         TokensMap ngrams = new TokensMap();
@@ -82,7 +83,6 @@ public class Main {
          * Let's check stability of ngrams
          */
 
-        double P = 0.99;
         for (var i: ngrams.map.entrySet().stream().sorted(Comparator.comparing(x -> x.getValue().freq)).collect(Collectors.toList())) {
             Optional<Integer> maxAO = i.getValue().As.map.
                     values().stream().
@@ -107,28 +107,5 @@ public class Main {
                 }
             }
         }
-
-        /*int a_len = 1;
-        for (var phrase : f_xn.map.keySet()) {
-            TokensMap f_axn = new TokensMap();
-
-            for (int i = a_len; i < annTokens.size() - n; i++) {
-                boolean found = true;
-
-                // find phrase occurrence
-                for (int j = 0; j < phrase.size(); j++) {
-                    if (!phrase.get(j).equals(annTokens.get(i+j).getLemma())) {
-                        found = false;
-                    }
-                }
-
-                if (found) {
-                    List<String> ngram = new ArrayList<>();
-                    ngram.add(annTokens.get(i-1).getLemma());
-                    ngram.addAll(phrase);
-                    f_axn.add(ngram);
-                }
-            }
-        }*/
     }
 }
