@@ -17,7 +17,9 @@ public class Tokenizer {
                         replace(";", "%;%").
                         replace("?", "%?%").
                         replace(":", "%:%").
-                        split("[\\[\\]%=0123456789\"_ \n\r]")).
+                        replace("=== ", "====").
+                        replace(" ===", "%").
+                        split("[\\[\\]%0123456789\"_ \n\r]")).
                 filter(x -> x.length() > 0 && !x.equals("-")).
                 collect(Collectors.toCollection(ArrayList::new));
     }

@@ -51,30 +51,43 @@ public class Main {
          */
 
         // PARAMETERS
-        int n = 10;
-        double P = 0.5;
-
-        // hashmap: Token
         TokensMap ngrams = new TokensMap();
+        for (int n = 5; n < 8; n++) {
 
-        // скользим по тексту и хэшируем строки
-        for (int i = 1; i < annTokens.size() - n - 1; i++) {
-            List<String> ngram = new ArrayList<>();
+            // hashmap: Token
+            int text_id = 0;
 
-            for (int j = i; j < i + n; j++) {
-                ngram.add(annTokens.get(j).getLemma());
+            // скользим по тексту и хэшируем строки
+            for (int i = 1; i < annTokens.size() - n - 1; i++) { // a b c d === e f g
+                List<String> ngram = new ArrayList<>();
+
+                boolean wasDelim = false;
+                for (int j = i; j < i + n; j++) {
+                    if (annTokens.get(j).token.equals("====")) {
+                        wasDelim = true;
+                        break;
+                    }
+                    ngram.add(annTokens.get(j).getLemma());
+                }
+
+                if (wasDelim) {
+                    text_id++;
+                    i += 3;
+                    continue;
+                }
+
+                ngrams.add(ngram, annTokens.get(i - 1).getLemma(),
+                        annTokens.get(i + ngram.size() + 1).getLemma(), text_id);
             }
-
-            ngrams.add(ngram, annTokens.get(i-1).getLemma(),
-                    annTokens.get(i + ngram.size() + 1).getLemma());
         }
 
         // delete freqs <= 1
         ngrams.map = ngrams.map.entrySet().stream().filter(x -> x.getValue().freq > 1).
                 collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        /*for (var i : f_xn.map.values()) {
+        /*for (var i : ngrams.map.values()) {
             System.out.print("Freq: " + i.freq + " ");
+            System.out.print("Text freq: " + i.text_ids.map.size() + " ");
             System.out.println(i.As);
             System.out.println();
         }*/
@@ -82,8 +95,10 @@ public class Main {
         /*
          * Let's check stability of ngrams
          */
-
-        for (var i: ngrams.map.entrySet().stream().sorted(Comparator.comparing(x -> x.getValue().freq)).collect(Collectors.toList())) {
+        /**/
+        double P = 0.9;
+        System.out.println("=== Results ===");
+        for (var i : ngrams.map.entrySet().stream().sorted(Comparator.comparing(x -> x.getValue().freq)).collect(Collectors.toList())) {
             Optional<Integer> maxAO = i.getValue().As.map.
                     values().stream().
                     max(Integer::compareTo);
@@ -103,9 +118,12 @@ public class Main {
                 if (f_axn / f_xn <= P && f_xnb / f_xn <= P) {
                     System.out.print("<Ngram: ");
                     i.getKey().forEach(x -> System.out.print(x + " "));
-                    System.out.println("| Freq: " + f_xn + ">");
+                    System.out.println("| F: " + f_xn + " | TF: " +
+                            i.getValue().text_ids.map.size() +
+                            "| Устойч. Left:" + f_axn / f_xn + " Right: " + f_xnb / f_xn + ">");
                 }
             }
         }
+        System.out.print("=== Number of ngrams: " + ngrams.map.size() + " ===");
     }
 }
