@@ -52,7 +52,7 @@ public class Main {
 
         // PARAMETERS
         TokensMap ngrams = new TokensMap();
-        for (int n = 5; n < 8; n++) {
+        for (int n = 3; n < 4; n++) {
 
             // hashmap: Token
             int text_id = 0;
@@ -96,7 +96,7 @@ public class Main {
          * Let's check stability of ngrams
          */
         /**/
-        double P = 0.9;
+        double P = 1.0;
         System.out.println("=== Results ===");
         for (var i : ngrams.map.entrySet().stream().sorted(Comparator.comparing(x -> x.getValue().freq)).collect(Collectors.toList())) {
             Optional<Integer> maxAO = i.getValue().As.map.
