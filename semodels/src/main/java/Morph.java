@@ -16,14 +16,14 @@ public class Morph {
 
     public class AnnToken {
         String token = null;
-        Set<String> lemmas = null;
+        Set<Lemma> lemmas = null;
 
-        AnnToken(String token, Set<String> lemmas) {
+        AnnToken(String token, Set<Lemma> lemmas) {
             this.token = token;
             this.lemmas = lemmas;
         }
 
-        String getLemma() {
+        Lemma getLemma() {
             return lemmas.iterator().next();
         }
     }
@@ -109,16 +109,20 @@ public class Morph {
 
             if (fs != null) {
 
-                Set<String> lls = new HashSet<>();
+                Set<Lemma> lls = new HashSet<>();
                 for (var i : fs) {
-                    lls.add(i.lemma.word);
+                    lls.add(i.lemma);
                 }
 
                 annTokens.add(new AnnToken(t, lls));
 
             } else {
-                Set<String> lemmas = new HashSet<>();
-                lemmas.add(t);
+                Set<Lemma> lemmas = new HashSet<>();
+
+                Lemma new_lemma = new Lemma();
+                new_lemma.word = t;
+                lemmas.add(new_lemma);
+
                 annTokens.add(new AnnToken(t, lemmas));
             }
         }

@@ -3,13 +3,13 @@ package utils;
 import java.util.ArrayList;
 
 public class Sentence {
-    private final ArrayList<String> lemmas = new ArrayList<>();
+    public final ArrayList<Lemma> lemmas = new ArrayList<>();
 
-    public void add(String lemma) {
+    public void add(Lemma lemma) {
         lemmas.add(lemma);
     }
 
-    public String get(int i) {
+    public Lemma get(int i) {
         return lemmas.get(i);
     }
 
@@ -21,7 +21,7 @@ public class Sentence {
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (var i : lemmas)
-            s.append(i).append(" ");
+            s.append(i.word).append(" ");
         return s.toString();
     }
 }

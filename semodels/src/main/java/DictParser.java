@@ -95,7 +95,7 @@ public class DictParser {
                 }
                 case XMLStreamConstants.END_ELEMENT -> {
                     if (reader.getLocalName().equals("lemma")) {
-                        // TODO
+
                         grammemaState = true;
                         lemmas.add(lemma);
                         lemma = null;
