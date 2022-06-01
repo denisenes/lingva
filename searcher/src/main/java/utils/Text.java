@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Text {
-
     public List<String> tokens = new ArrayList<>();
 
     public static class Context {
@@ -20,15 +19,25 @@ public class Text {
     }
     public final Map<Sinset, Context> entries = new HashMap<>();
 
+    private void updateFreqInAssoc(Sinset s) {
+        entries.get(s).freq++;
+    }
 
-    private void updateFreq(Sinset s) {
+    private void updateFreq(Sinset s, double height) {
         if (s == null)
             return;
 
-        entries.get(s).freq++;
+        if (height <= 1)
+            entries.get(s).freq++;
+
+        if (height == 0) {
+            for (var a : s.assoc)
+                updateFreqInAssoc(a);
+        }
+
         List<Sinset> sinsets = s.hyperonims;
         for (var i : sinsets)
-            updateFreq(i);
+            updateFreq(i, height+1);
     }
 
     public void computeFreq(Sinset sinset) {
@@ -36,7 +45,7 @@ public class Text {
             for (int i = 0; i <= tokens.size() - g.size(); i++) {
                 Ngram gg = new Ngram(tokens.subList(i, i + g.size()));
                 if (g.equals(gg)) {
-                    updateFreq(sinset);
+                    updateFreq(sinset, 0);
                 }
             }
         }
@@ -68,9 +77,9 @@ public class Text {
         for (var i : entries.keySet())
             if (entries.get(i).freq > 0)
                 s.append("(").append(i.descriptor).append(" ").
-                    append(entries.get(i).freq).append(" ")
+                    append(entries.get(i).freq).append(" ").
                     //append(entries.get(i).tf).append(" ").
-                    /*append(entries.get(i).idf)*/.append(") ");
+                    /*append(entries.get(i).idf)*/append(") ");
         return s.toString();
     }
 }

@@ -14,6 +14,15 @@ import java.util.stream.Collectors;
 
 public class Main {
 
+    /* TODO:
+     * штрафы                            +
+     * ассоциации                        +
+     * заполнить запросы + тезаурус
+     * точность
+     * ошибки
+     * полнота
+     */
+
     public static void main(String[] args) throws IOException {
 
         // Integer freq_max = 100;
@@ -128,9 +137,9 @@ public class Main {
                 results.add(res);
             }
 
-            results.sort(Comparator.comparingDouble(x -> x.cosResult));
+            results.sort(Comparator.comparingDouble(x -> 1/x.cosResult));
 
-            results.stream().filter(x -> x.cosResult > 0.80)
+            results.stream().filter(x -> x.cosResult > 0.30)
                     .limit(7)
                     .forEach(x -> {
                         System.out.println("----------------------");

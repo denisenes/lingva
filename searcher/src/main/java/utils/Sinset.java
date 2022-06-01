@@ -9,6 +9,8 @@ public class Sinset {
     public ArrayList<Sinset> hyperonims = new ArrayList<>();
     public ArrayList<Sinset> hyponims = new ArrayList<>();
 
+    public ArrayList<Sinset> assoc = new ArrayList<>();
+
     public Sinset(String descriptor) {
         this.descriptor = descriptor;
         synonyms = new ArrayList<>();

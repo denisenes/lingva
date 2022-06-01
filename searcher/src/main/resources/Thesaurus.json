@@ -4,73 +4,267 @@
       "descriptor": "существо",
       "synonyms": ["существо", "создание"],
       "hyperonims": [],
-      "hyponims": ["божество", "человек", "животное"]
+      "hyponims": ["божество", "человек", "животное"],
+      "assoc" : []
     },
     {
       "descriptor": "божество",
-      "synonyms": ["Бог", "господь", "божество", "божественный", "святой дух"],
+      "synonyms": ["Бог", "господь", "божество", "божественный", "святой дух", "Господу", "бог"],
       "hyperonims": ["существо"],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor": "создать",
+      "synonyms": ["создал", "создаю", "создать"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : []
     },
     {
       "descriptor": "человек",
       "synonyms": ["человек", "люди"],
       "hyperonims": ["существо"],
-      "hyponims": ["Лот", "Ной"]
+      "hyponims": ["Лот", "Ной", "Адам", "Ева", "воин", "родственник"],
+      "assoc" : []
     },
     {
       "descriptor": "животное",
       "synonyms": ["животное", "животный", "животные", "гад"],
       "hyperonims": ["существо"],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : []
     },
     {
       "descriptor" : "Ной",
       "synonyms" : ["Ной", "Ною", "Ноя", "Ное"],
       "hyperonims": ["человек"],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : ["потоп"]
+    },
+    {
+      "descriptor": "Адам",
+      "synonyms": ["Адам", "Адама", "Адаму"],
+      "hyperonims": ["человек"],
+      "hyponims": [],
+      "assoc" : ["Ева"]
+    },
+    {
+      "descriptor": "Ева",
+      "synonyms": ["Ева", "Еву", "Евы", "Еве"],
+      "hyperonims": ["человек"],
+      "hyponims": [],
+      "assoc" : ["Адам"]
+    },
+    {
+      "descriptor" : "потоп",
+      "synonyms" : ["потоп", "потопа", "наводнение", "великий потоп"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : ["Ной"]
     },
     {
       "descriptor" : "Лот",
       "synonyms" : ["Лоту", "Лот", "Лота", "Ное"],
       "hyperonims": ["человек"],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : []
     },
     {
       "descriptor" : "город",
       "synonyms" : ["город", "поселение"],
       "hyperonims": [],
-      "hyponims": ["Содом", "Гоморра"]
+      "hyponims": ["Содом", "Гоморра"],
+      "assoc" : []
     },
     {
       "descriptor" : "Содом",
       "synonyms" : ["Содом", "Содому", "Содоме", "Содома"],
       "hyperonims": ["город"],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : []
     },
     {
       "descriptor" : "Гоморра",
       "synonyms" : ["Гоморра", "Гоморре", "Гоморру", "Гоморры"],
       "hyperonims": ["город"],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : []
     },
     {
       "descriptor" : "священный объект",
       "synonyms" : ["священный предмет", "святой предмет"],
       "hyperonims": [],
-      "hyponims": ["ковчег"]
+      "hyponims": ["ковчег"],
+      "assoc" : []
     },
     {
       "descriptor" : "ковчег",
       "synonyms" : ["ковчег", "Ковчег Завета"],
       "hyperonims": ["священный объект"],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : []
     },
     {
       "descriptor" : "материал",
       "synonyms" : ["золото", "серебро", "дерево", "железо", "деревянный", "золотой", "глина"],
       "hyperonims": [],
-      "hyponims": []
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "земля",
+      "synonyms" : ["земля", "твердь"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "небо",
+      "synonyms" : ["небо", "небеса"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "Эдем",
+      "synonyms" : ["сад божий", "сад Едема", "Едем", "Едема", "Едеме", "рай", "рая"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : ["небо"]
+    },
+    {
+      "descriptor" : "постройка",
+      "synonyms" : ["строение", "постройка"],
+      "hyperonims": [],
+      "hyponims": ["башня"],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "башня",
+      "synonyms" : ["башня", "башни"],
+      "hyperonims": ["постройка"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "Вавилон",
+      "synonyms" : ["Вавилон", "вавилонский"],
+      "hyperonims": ["город"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "язык",
+      "synonyms" : ["язык"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "Иерусалим",
+      "synonyms" : ["Иерусалим", "Иерусалимский", "Иерусалиме"],
+      "hyperonims": ["город"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "царь",
+      "synonyms" : ["царь"],
+      "hyperonims": ["человек"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "сказать",
+      "synonyms" : ["сказать", "сказал", "говорю"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "общество",
+      "synonyms" : ["племя", "община"],
+      "hyperonims": [],
+      "hyponims": ["народ"],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "народ",
+      "synonyms" : ["народ", "народный"],
+      "hyperonims": ["общество"],
+      "hyponims": ["Израильтяне"],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "Израильтяне",
+      "synonyms" : ["Израильтянами", "Израильтяне", "Израильтянам",  "Израильтян"],
+      "hyperonims": ["народ"],
+      "hyponims": [],
+      "assoc" : ["Евреи"]
+    },
+    {
+      "descriptor" : "Евреи",
+      "synonyms" : ["Евреи", "Еврей", "Еврея", "Еврею", "Евреями"],
+      "hyperonims": ["народ"],
+      "hyponims": [],
+      "assoc" : ["Израильтяне"]
+    },
+    {
+      "descriptor" : "Филистимляне",
+      "synonyms" : ["Филистимлянами", "Филистимляне", "Филистимлянам"],
+      "hyperonims": ["народ"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "воин",
+      "synonyms" : ["воин", "единоборец"],
+      "hyperonims": ["человек"],
+      "hyponims": ["Голиаф"],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "Голиаф",
+      "synonyms" : ["Голиаф", "Голиафа", "Голиафу", "Голиафом"],
+      "hyperonims": ["воин"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "Давид",
+      "synonyms" : ["Давид", "Давида", "Давиду"],
+      "hyperonims": ["человек"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "пророк",
+      "synonyms" : ["пророк", "мессия"],
+      "hyperonims": ["человек"],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "родственник",
+      "synonyms" : ["родственник"],
+      "hyperonims": ["человек"],
+      "hyponims": ["сын", "отец"],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "сын",
+      "synonyms" : ["сын"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : []
+    },
+    {
+      "descriptor" : "отец",
+      "synonyms" : ["отец"],
+      "hyperonims": [],
+      "hyponims": [],
+      "assoc" : []
     }
   ]
 }

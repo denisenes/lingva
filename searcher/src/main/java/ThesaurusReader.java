@@ -19,6 +19,8 @@ public class ThesaurusReader {
         String [] synonyms;
         String [] hyperonims;
         String [] hyponims;
+
+        String [] assoc;
     }
 
     private static void repairPointers(Thesaurus thes, ArrayList<Sinset> sinsets) {
@@ -40,6 +42,12 @@ public class ThesaurusReader {
                 Sinset lower = sinsets.stream().filter(x -> hyponim.equals(x.descriptor)).
                         findAny().orElse(null);
                 sinset.hyponims.add(lower);
+            }
+
+            for (var assoc : current.assoc) {
+                Sinset assoc_sin = sinsets.stream().filter(x -> assoc.equals(x.descriptor)).
+                        findAny().orElse(null);
+                sinset.assoc.add(assoc_sin);
             }
         }
     }
